@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  api:
+    image: node:fermium-alpine
+    command: npm run start:dev
+    depends_on:
+      - mongodb
+      - redis
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    volumes:
+      - ./:/app
+    working_dir: /app
+    networks:
+      - local-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - local-network
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - local-network
+
+networks:
+  local-network:

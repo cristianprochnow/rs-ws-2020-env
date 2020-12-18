@@ -11,8 +11,8 @@
     "prepare:pipeline": "rm -rf */lcov-report coverage",
     "test": "npm run test:unit && npm run test:integration",
     "test:cover": "nyc npm test",
-    "test:unit": "NODE_ENV=test mocha --require tests/helpers \"api/**/*@(.spec.js)\" --timeout 5000",
-    "test:unit:debug": "NODE_ENV=test mocha --inspect-brk --require tests/helpers \"api/**/*@(.spec.js)\" --timeout 5000",
+    "test:unit": "cross-env NODE_ENV=test mocha --require tests/helpers \"api/**/*@(.spec.js)\" --timeout 5000",
+    "test:unit:debug": "cross-env NODE_ENV=test mocha --inspect-brk --require tests/helpers \"api/**/*@(.spec.js)\" --timeout 5000",
     "test:integration": "NODE_ENV=test mocha --require tests/helpers \"tests/api/**/*@(.spec.js)\" --timeout 5000",
     "modulealias:link": "link-module-alias",
     "modulealias:clean": "command -v link-module-alias && link-module-alias clean || true",
@@ -44,6 +44,7 @@
     "supertest": "^6.0.1"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "ioredis": "^4.19.2",
     "koa": "^2.13.0",
     "koa-async-validator": "^0.4.1",
